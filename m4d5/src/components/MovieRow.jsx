@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Carousel } from 'react-bootstrap'
+import { Container, Row, Col, Card } from 'react-bootstrap'
 // import MoviesGallery from './MovieGallery'
 
 class MovieRow extends React.Component {
@@ -19,7 +19,7 @@ class MovieRow extends React.Component {
       if (response.ok) {
         let data = await response.json()
         console.log(data)
-        this.setState({ movies: data })
+        this.setState({ movies: data.Search })
       }
     } catch (error) {
       console.log(error)
@@ -29,22 +29,18 @@ class MovieRow extends React.Component {
   render() {
     return (
       <>
-        <h4>new movies</h4>
-        <Container>
-          <Row className="justify-content-center mt-3">
-            <Col md={6}>
-              <Carousel>
-                {this.state.movies.map((movie) => (
-                  <Carousel.Item key={movie.imbdID}>
-                    <img
-                      className="d-block w-100"
-                      src={movie.Poster}
-                      alt="First slide"
-                    />
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-            </Col>
+        <h4 style={{ color: 'white' }}>Harry Potter</h4>
+        {/* <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row mx-n1"> */}
+        <Container className="">
+          <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-6 row-cols-xl-6 mb-4 text-center">
+            {this.state.movies.map((movie) => (
+              <Col className="mb-2" key={movie.imdbID}>
+                <img className="img-fluid" src={movie.Poster} alt="movie" />
+              </Col>
+            ))}
           </Row>
         </Container>
       </>
